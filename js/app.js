@@ -6,7 +6,7 @@ const swiper = new Swiper('.swiper', {
         clickable: true,
     },
     autoplay: {
-        delay: 4000,
+        delay: 70000,
         disableOnInteraction: false,
     },
     effect: 'flip', // Используем эффект переворота
@@ -61,5 +61,15 @@ function typeText() {
   setTimeout(typeText, delay);
 }
 
-// Запускаем функцию, когда DOM загружен
-document.addEventListener("DOMContentLoaded", typeText);
+const wrapperItem = document.querySelector('.about__wrapper-item');
+const title = wrapperItem.querySelector('.about__wrapper-pretitle');
+const text2 = wrapperItem.querySelector('.about__wrapper-text');
+
+wrapperItem.addEventListener('mouseenter', () => {
+    title.style.opacity = '0'; // Убираем заголовок
+});
+
+wrapperItem.addEventListener('mouseleave', () => {
+    title.style.opacity = '1'; // Возвращаем заголовок
+});
+
