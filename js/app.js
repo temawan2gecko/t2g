@@ -32,35 +32,38 @@ const fullText = text + name + "."; // Полный текст
 const textContainer = document.getElementById("animatedText");
 let index = 0;
 
-function typeText() {
-  // Генерируем случайное время задержки
-  const delay = Math.random() * 100 + 50; // От 50 до 150 мс
+document.addEventListener("DOMContentLoaded", function() {
+    const text = "Hello World! I'm ";
+    const name = "Chalunin Artem"; // Полное имя
+    const fullText = text + name + "."; // Полный текст
+    const textContainer = document.getElementById("animatedText");
+    let index = 0;
 
-  // Проверяем, достигли ли конца полного текста
-  if (index < fullText.length) {
-    if (index >= text.length && index < text.length + name.length) {
-      // Печатаем имя полностью красным цветом
-      textContainer.innerHTML += `<span class='red'>${name.charAt(
-        index - text.length
-      )}</span>`;
-    } else {
-      textContainer.innerHTML += fullText.charAt(index);
+    function typeText() {
+        const delay = Math.random() * 100 + 50;
+
+        if (index < fullText.length) {
+            if (index >= text.length && index < text.length + name.length) {
+                textContainer.innerHTML += `<span class='red'>${name.charAt(index - text.length)}</span>`;
+            } else {
+                textContainer.innerHTML += fullText.charAt(index);
+            }
+            index++;
+        } else {
+            setTimeout(() => {
+                textContainer.innerHTML = "";
+                index = 0;
+                typeText();
+            }, 1000);
+            return;
+        }
+
+        setTimeout(typeText, delay);
     }
-    index++;
-  } else {
-    // Когда закончится полный текст, очищаем и начинаем снова
-    setTimeout(() => {
-      textContainer.innerHTML = ""; // Очищаем текст
-      index = 0; // Сбрасываем индекс
-      typeText(); // Запускаем снова
-    }, 1000); // Задержка перед перезапуском
-    return; // Выходим из функции
-  }
+    typeText();
+});
 
-  // Задаем случайную задержку для следующего символа
-  setTimeout(typeText, delay);
-}
-typeText()
+
 const wrapperItem = document.querySelector('.about__wrapper-item');
 const title = wrapperItem.querySelector('.about__wrapper-pretitle');
 const text2 = wrapperItem.querySelector('.about__wrapper-text');
