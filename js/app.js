@@ -60,7 +60,7 @@ function typeText() {
   // Задаем случайную задержку для следующего символа
   setTimeout(typeText, delay);
 }
-
+typeText()
 const wrapperItem = document.querySelector('.about__wrapper-item');
 const title = wrapperItem.querySelector('.about__wrapper-pretitle');
 const text2 = wrapperItem.querySelector('.about__wrapper-text');
